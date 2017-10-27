@@ -6,7 +6,7 @@ return [
 
     //CONFIGURAÇÃO DE DISPARO DE EMAIL
     'USEREMAIL'=>'envio@malltec.com.br',
-    'USERPASSWORD'=>'password123',
+    'USERPASSWORD'=>'',
     'USERMANE'=>'STUDIORAMA',
 
     //EMAIL DE SUPORTE QUE APREWCE NAS MENSAGENS DE ERRO
