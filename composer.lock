@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "81319686f329d5490a13a6ef3c45d6a3",
+    "content-hash": "903b12d1ab9324d77b1abdc05070ec36",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -705,6 +705,121 @@
             "time": "2015-05-03T08:23:04+00:00"
         },
         {
+            "name": "phpmailer/phpmailer",
+            "version": "v6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "992392437c2e2784e0dc41446024fe411d293c96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/992392437c2e2784e0dc41446024fe411d293c96",
+                "reference": "992392437c2e2784e0dc41446024fe411d293c96",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "doctrine/annotations": "1.2.*",
+                "friendsofphp/php-cs-fixer": "^2.2",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "^4.8 || ^5.7",
+                "zendframework/zend-eventmanager": "3.0.*",
+                "zendframework/zend-i18n": "2.7.3",
+                "zendframework/zend-serializer": "2.7.*"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to send email in multibyte encoding charset",
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "psr/log": "For optional PSR-3 debug logging",
+                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "time": "2017-09-14T16:47:12+00:00"
+        },
+        {
+            "name": "soundasleep/html2text",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soundasleep/html2text.git",
+                "reference": "cdb89f6ffa2c4cc78f8ed9ea6ee0594a9133ccad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soundasleep/html2text/zipball/cdb89f6ffa2c4cc78f8ed9ea6ee0594a9133ccad",
+                "reference": "cdb89f6ffa2c4cc78f8ed9ea6ee0594a9133ccad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.0",
+                "soundasleep/component-tests": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Html2Text\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "EPL-1.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jevon Wright",
+                    "homepage": "https://jevon.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP script to convert HTML into a plain text format",
+            "homepage": "https://github.com/soundasleep/html2text",
+            "keywords": [
+                "email",
+                "html",
+                "php",
+                "text"
+            ],
+            "time": "2017-04-19T22:01:50+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.8",
             "source": {
@@ -1052,6 +1167,51 @@
                 "yii2"
             ],
             "time": "2017-05-01T08:29:00+00:00"
+        },
+        {
+            "name": "zyx/zyx-phpmailer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SDKiller/zyx-phpmailer.git",
+                "reference": "d8b6c381b49370a2998380e6e46eb3086a1fead1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SDKiller/zyx-phpmailer/zipball/d8b6c381b49370a2998380e6e46eb3086a1fead1",
+                "reference": "d8b6c381b49370a2998380e6e46eb3086a1fead1",
+                "shasum": ""
+            },
+            "require": {
+                "phpmailer/phpmailer": "*",
+                "soundasleep/html2text": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "zyx\\phpmailer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Serge Postrash aka SDKiller",
+                    "email": "jexy.ru@gmail.com"
+                }
+            ],
+            "description": "PHPMailer integration for Yii 2 framework",
+            "keywords": [
+                "email",
+                "mail",
+                "mailer",
+                "phpmailer",
+                "yii2"
+            ],
+            "time": "2015-01-02T15:21:10+00:00"
         }
     ],
     "packages-dev": [
@@ -3724,7 +3884,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-money": 20,
-        "kartik-v/yii2-widget-fileinput": 20
+        "kartik-v/yii2-widget-fileinput": 20,
+        "zyx/zyx-phpmailer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

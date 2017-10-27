@@ -30,6 +30,8 @@ class UsuarioModel extends \yii\db\ActiveRecord
     public $arquivo;
 
     public $email;
+
+    public $codigo;
     /**
      * @inheritdoc
      */
@@ -46,13 +48,15 @@ class UsuarioModel extends \yii\db\ActiveRecord
         return [
             [['arquivo'], 'file', 'extensions'=> 'jpg, png, gif'],
             [['user_cpf'], CpfValidator::className()],
-            [['user_nome','user_email','user_password'], 'required'],
+            [['user_nome','user_email'], 'required'],
+            [['user_password'], 'required', 'on'=>'cadastro'],
             [['user_nome', 'user_email', 'user_imagem', 'user_sobrenome'], 'string', 'max' => 120],
-            [['user_password', 'user_nivel'], 'string', 'max' => 80],           
+            [['user_password', 'user_nivel'], 'string', 'max' => 80],
             [['user_telefone', 'user_cpf'], 'string', 'max' => 20],
             [['id_cidade'], 'string', 'max' => 50],
             [['id_uf'], 'string', 'max' => 2],           
-            [['email'], 'string', 'max' => 80],
+            [['email'], 'email'],
+            [['codigo'], 'string', 'max' => 255],
         ];
     }
 
@@ -73,10 +77,11 @@ class UsuarioModel extends \yii\db\ActiveRecord
             'user_imagem' => 'Foto de perfil',
             'arquivo' => 'Foto de perfil',
             'user_password' => 'Senha',
-            //'user_codigo_recuperacao' => 'User Codigo Recuperacao',
+            'user_codigo_recuperacao' => 'User Codigo Recuperacao',
             'user_nivel' => 'Nível',
-            'email' => 'Informe email válido',
-            //'user_qt_recuperacao' => 'User Qt Recuperacao',
+            'email' => 'E-mail de acesso',
+            'codigo' => 'Codigo de recuperar senha',
+            'user_qt_recuperacao' => 'User Qt Recuperacao',
         ];
     }
 }

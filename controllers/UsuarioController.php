@@ -78,6 +78,7 @@ class UsuarioController extends Controller
     public function actionCreate()
     {
         $model = new UsuarioModel();
+        $model->scenario = 'cadastro';
         $post = Yii::$app->request->post();
 
         if ($model->load($post)) {

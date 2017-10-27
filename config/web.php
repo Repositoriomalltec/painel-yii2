@@ -3,7 +3,7 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
-    'language'=>'pt-BB',
+    'language' => 'pt-BB',
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -24,34 +24,39 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'mail.malltec.com.br',
+                'username' => 'envio@malltec.com.br',
+                'password' => 'password123',
+                'port' => '587',
+                'encryption' => null,
+            ],
+            'useFileTransport' => false,
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
+    'traceLevel' => YII_DEBUG ? 3 : 0,
+    'targets' => [
+        [
+            'class' => 'yii\log\FileTarget',
+            'levels' => ['error', 'warning'],
         ],
+    ],
+],
         'db' => require(__DIR__ . '/db.php'),
         
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [                
-            ],
-        ],
+    'enablePrettyUrl' => true,
+    'showScriptName' => false,
+    'rules' => [
+    ],
+],
         
         'formatter' => [
-            'class' => 'yii\i18n\formatter',
-            'thousandSeparator' => '.',
-            'decimalSeparator' => ',',
-        ]
+    'class' => 'yii\i18n\formatter',
+    'thousandSeparator' => '.',
+    'decimalSeparator' => ',',
+]
     ],
     'params' => $params,
 ];
