@@ -97,7 +97,8 @@ class UsuarioController extends Controller
 
                 //SALVA O ARQUIVO NO DIRETÓRIO
                 $uploadPath = Yii::getAlias('@webroot/files/');
-                $model->arquivo->saveAs($uploadPath . $model->arquivo->name);
+                $model->arquivo->saveAs($uploadPath . $novaimagem);
+                $model->arquivo = null;
             endif;
 
             if ($model->save()):
