@@ -14,8 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pedido-model-index">
     <p><?= Html::a('Novo', ['create'], ['class' => 'btn btn-success']) ?></p>
-
-
 </div>
 
 <div class="col-md-12">

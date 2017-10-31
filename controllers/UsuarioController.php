@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\UsuarioModel;
-use app\models\UsuarioPesquisa;
+
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -51,12 +51,9 @@ class UsuarioController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UsuarioPesquisa();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $arrayDados = UsuarioModel::find()->all();
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'arrayDados' => $arrayDados,
         ]);
     }
 
@@ -137,7 +134,7 @@ class UsuarioController extends Controller
 
         if ($model->load($post)) {
             // PASTA DE ULPLOAD
-            $uploadPath = Yii::getAlias('@webroot')."/files/";
+            $uploadPath = Yii::getAlias('@webroot').'/files/';
 
             //RECEBE TODOS OS ATRIBUTOS DO FILES
             $model->arquivo = UploadedFile::getInstance($model, 'arquivo');
@@ -165,7 +162,8 @@ class UsuarioController extends Controller
                 $model->user_imagem = $novaimagem;
 
                 //SALVA O ARQUIVO NO DIRETÓRIO
-                $model->arquivo->saveAs($uploadPath.$novaimagem,false);
+                @$model->arquivo->saveAs($uploadPath.$novaimagem,false);
+
             endif;
 
             if ($model->save()):

@@ -10,29 +10,29 @@ $this->title = $model->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Cliente', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="cliente-model-view">
+<div class="box box-<?= yii::$app->params['cor_borda_formulario'] ?>">
+    <div class="box-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <p>
+            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Deseja deletar este item ?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+               // 'id',
+                'nome',
+                'email:email',
+                'telefone',
             ],
         ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nome',
-            'email:email',
-            'telefone',
-        ],
-    ]) ?>
-
+    </div>
 </div>

@@ -5,14 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\UsuarioModel */
 
-$this->title = $tituloFormulario.' '.$model->user_nome.' '.$model->user_sobrenome;
+$this->title = "Atualizar: ".' '.$model->user_nome.' '.$model->user_sobrenome;
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->user_nome.' '.$model->user_sobrenome, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="usuario-model-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

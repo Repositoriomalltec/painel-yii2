@@ -11,9 +11,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Cliente', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cliente-model-create">
-
-    <h1><?php //echo Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
