@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\ClienteModel;
-use app\models\ClientePesquisa;
+//use app\models\ClientePesquisa;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -48,12 +48,14 @@ class ClienteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ClientePesquisa();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $arrayDados = ClienteModel::find()->all();
+        $arraylabels = [];
+        if (!empty($arrayDados)) {
+            $arraylabels = $arrayDados[0]->attributeLabels();
+        }
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'arrayDados' => $arrayDados,
+            'arraylabels' => $arraylabels,
         ]);
     }
 
@@ -84,10 +86,6 @@ class ClienteController extends Controller
             return json_encode(['msg'=>$msg,'acao_java'=>'create']);
             //return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            //return json_encode(['mensagem'=>$model->nome]);
-            //$msg = '<div  class="alert alert-success" role="alert">Teste</div>';
-            //return json_encode(['msg'=>'Testexxx']);
-            //var_dump($post);
             return $this->render('create', [
                 'titleForm'=>'Cadastro de cliente',
                 'model' => $model,
@@ -126,8 +124,7 @@ class ClienteController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->getReferrer());
     }
 
     /**

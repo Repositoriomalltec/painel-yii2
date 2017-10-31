@@ -12,11 +12,13 @@ use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 
 
+
 /**
  * UsuarioController implements the CRUD actions for UsuarioModel model.
  */
 class UsuarioController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -86,6 +88,9 @@ class UsuarioController extends Controller
             //SENHA PARA MD5
             $model->user_password = md5($post['UsuarioModel']['user_password']);
 
+            //CÓDIGO DE RECUPERAÇÃO DE ACESSO
+            $model->user_codigo_recuperacao = md5(time());
+
             //RECEBE TODOS OS ATRIBUTOS DO FILES
             $model->arquivo = UploadedFile::getInstance($model, 'arquivo');
 
@@ -96,7 +101,7 @@ class UsuarioController extends Controller
                 $model->user_imagem = $novaimagem;
 
                 //SALVA O ARQUIVO NO DIRETÓRIO
-                $uploadPath = Yii::getAlias('@webroot/files/');
+                $uploadPath = Yii::getAlias('@webroot')."/files/";
                 $model->arquivo->saveAs($uploadPath . $novaimagem);
                 $model->arquivo = null;
             endif;
@@ -132,13 +137,21 @@ class UsuarioController extends Controller
 
         if ($model->load($post)) {
             // PASTA DE ULPLOAD
-            $uploadPath = Yii::getAlias('@webroot/files/');
+            $uploadPath = Yii::getAlias('@webroot')."/files/";
 
             //RECEBE TODOS OS ATRIBUTOS DO FILES
             $model->arquivo = UploadedFile::getInstance($model, 'arquivo');
 
-            //NOVA SENHA PARA MD5
-            $model->user_password = md5($post['UsuarioModel']['user_password']);
+            /*
+             * @var String $model->user_password
+             * SE HOUVER INFORMAÇÃO NO INPUT SENHA CARREGA O ÍNDICE COM A NOVA SENHA ELSE UNSET
+             * NOVA SENHA PARA MD5
+            */
+            if(!empty($post['UsuarioModel']['user_password'])):
+                $model->user_password = md5($post['UsuarioModel']['user_password']);
+            else:
+                unset($model->user_password);
+            endif;
 
             if(!empty($model->arquivo->name)):
 
@@ -193,6 +206,13 @@ class UsuarioController extends Controller
     protected function findModel($id)
     {
         if (($model = UsuarioModel::findOne($id)) !== null) {
+            // PASTA DE ULPLOAD
+            $uploadPath = Yii::getAlias('@webroot/files/');
+
+            //DELETAR FOTO ANTINGA
+            if (file_exists($uploadPath . $model->user_imagem)):
+                @unlink($uploadPath . $model->user_imagem);
+            endif;
             return $model;
         } else {
             throw new NotFoundHttpException('Deseja deletar essa informação ?');

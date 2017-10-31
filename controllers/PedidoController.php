@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\PedidoModel;
-use app\models\PedidoPesquisa;
+
 use app\models\ProdutoModel;
 use Yii;
 use yii\filters\VerbFilter;
@@ -49,12 +49,9 @@ class PedidoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PedidoPesquisa();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $arrayDados = PedidoModel::find()->all();
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'arrayDados' => $arrayDados,
         ]);
     }
 
@@ -125,7 +122,7 @@ class PedidoController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->getReferrer());
     }
 
     /**

@@ -16,6 +16,7 @@ use yii\web\Controller;
 
 class ResgatarController extends Controller
 {
+    public $layout ="adminLTELogin";
     /**
      * @inheritdoc
      */

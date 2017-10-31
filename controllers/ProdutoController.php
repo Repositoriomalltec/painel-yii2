@@ -48,14 +48,11 @@ class ProdutoController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ProdutoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $arrayDados = ProdutoModel::find()->all();
         return $this->render('index', [
-            'tituloLista'=>'Lista de produtos cadastrados',
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'arrayDados' => $arrayDados,
         ]);
+
     }
 
     /**
@@ -123,7 +120,7 @@ class ProdutoController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->getReferrer());
     }
 
     /**

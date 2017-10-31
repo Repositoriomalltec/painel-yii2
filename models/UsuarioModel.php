@@ -57,6 +57,7 @@ class UsuarioModel extends \yii\db\ActiveRecord
             [['id_uf'], 'string', 'max' => 2],           
             [['email'], 'email'],
             [['codigo'], 'string', 'max' => 255],
+            [['user_codigo_recuperacao'], 'string', 'max' => 255],
         ];
     }
 
@@ -80,7 +81,7 @@ class UsuarioModel extends \yii\db\ActiveRecord
             'user_codigo_recuperacao' => 'User Codigo Recuperacao',
             'user_nivel' => 'Nível',
             'email' => 'E-mail de acesso',
-            'codigo' => 'Codigo de recuperar senha',
+            'codigo' => '',
             'user_qt_recuperacao' => 'User Qt Recuperacao',
         ];
     }

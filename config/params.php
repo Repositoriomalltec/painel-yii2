@@ -2,7 +2,7 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'nomeEmpresa'=>'Nome da empresa',
+    'nomeEmpresa'=> 'Studiorama',
 
     //CONFIGURAÇÃO DE DISPARO DE EMAIL
     'USEREMAIL'=>'envio@malltec.com.br',
@@ -11,4 +11,8 @@ return [
 
     //EMAIL DE SUPORTE QUE APREWCE NAS MENSAGENS DE ERRO
     'EMAILSUPORTE'=>'suporte@studiorama.com.br',
+
+
+    /*cor da borda do formulario */
+    'cor_borda_formulario'=>"primary",
 ];

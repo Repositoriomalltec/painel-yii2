@@ -66,6 +66,18 @@ class LoginForm extends Model
     }
 
     /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'rememberMe' => 'Lembrar senha',
+            'username' => 'Nome do usuário',
+            'password' => 'Senha de acesso',
+        ];
+    }
+
+    /**
      * Finds user by [[username]]
      *
      * @return User|null
