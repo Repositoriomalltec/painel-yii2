@@ -39,7 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php
                     foreach ($arrayDados as $dados): ?>
                         <tr>
-                            <th scope="row"><?= $dados->id; ?></th>
+                            <th scope="row">
+                                <div class="pull-left">
+                                    <img src="<?= Yii::getAlias('@web')."/files/".$dados->user_imagem;?>" class="img-circle" alt="<?= $dados->user_nome;?>" width="50">
+                                </div>
+                            </th>
                             <td><?= $dados->user_nome.' '.$dados->user_sobrenome; ?></td>
                             <td><?= $dados->user_telefone; ?></td>
                             <td><?= $dados->user_email; ?></td>

@@ -91,14 +91,14 @@ class UsuarioController extends Controller
             //RECEBE TODOS OS ATRIBUTOS DO FILES
             $model->arquivo = UploadedFile::getInstance($model, 'arquivo');
 
-            if(!empty($model->arquivo->name)):
+            if (!empty($model->arquivo->name)):
 
                 //ATRIBUINDO NOME PARA FILE
-                $novaimagem = md5(uniqid()) . '-' . time() . '.'.$model->arquivo->extension;
+                $novaimagem = md5(uniqid()) . '-' . time() . '.' . $model->arquivo->extension;
                 $model->user_imagem = $novaimagem;
 
                 //SALVA O ARQUIVO NO DIRETÓRIO
-                $uploadPath = Yii::getAlias('@webroot')."/files/";
+                $uploadPath = Yii::getAlias('@webroot') . "/files/";
                 $model->arquivo->saveAs($uploadPath . $novaimagem);
                 $model->arquivo = null;
             endif;
@@ -106,19 +106,19 @@ class UsuarioController extends Controller
             if ($model->save()):
                 //Mensagem de cadastro com sucesso.
                 Yii::$app->getSession()->setFlash('success', 'Cadastro com sucesso.', true);
-                return $this->redirect(Yii::$app->request->getReferrer());
+            //return $this->redirect(Yii::$app->request->getReferrer());
             else:
                 //Mensagem de de erro ao cadastrar
                 Yii::$app->getSession()->setFlash('danger', 'Erro ao cadastrar', true);
-                return $this->redirect(Yii::$app->request->getReferrer());
+                //return $this->redirect(Yii::$app->request->getReferrer());
             endif;
+        }
 
-        } else {
             return $this->render('create', [
                 'tituloFormulario'=>'Cadastro de usuário',
                 'model' => $model,
             ]);
-        }
+
     }
 
     /**
@@ -175,7 +175,7 @@ class UsuarioController extends Controller
                 Yii::$app->getSession()->setFlash('danger', 'Erro ao atualizar', true);
                 //return $this->redirect(Yii::$app->request->getReferrer());
             endif;
-            
+
         }
 
             return $this->render('update', [
@@ -201,6 +201,7 @@ class UsuarioController extends Controller
         if (file_exists($uploadPath . $model->user_imagem)):
             @unlink($uploadPath . $model->user_imagem);
         endif;
+
         $model->delete();
         return $this->redirect(['index']);
     }
@@ -217,7 +218,7 @@ class UsuarioController extends Controller
         if (($model = UsuarioModel::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('Deseja deletar essa informação ?');
+            throw new NotFoundHttpException('Erro ao deletar a informação.');
         }
     }
 }
